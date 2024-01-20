@@ -8,5 +8,4 @@ urlpatterns = [
     path('portfolio', cv_views.portfolio, name='portfolio'),
     path('contact', cv_views.contact, name='contact'),
     path('about', cv_views.about, name='about'),
-
 ]
