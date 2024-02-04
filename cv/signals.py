@@ -9,4 +9,4 @@ def create_profile(sender, instance, created, **kwargs):
     if created:
         profile = Profile.objects.create(
             user=instance,
-            email=instance.email,)
+            email=instance.email)

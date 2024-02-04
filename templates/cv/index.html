@@ -9,11 +9,11 @@
                 <h3 class="font-weight-light">Who am I ?</h3>
                 <span class="line mb-5"></span>
                 <h5 class="mb-3">A Renewable Energy Specialist, A Web Developer, An Energy Management Specialist,  Located at Keroka - Nyamira County, Kenya</h5>
-                <h4 class="font-weight-light"> Career Objective </h4>
-                <p class="mt-20">To secure a challenging position in the renewable energy industry that utilizes my skills and knowledge in science physics and web development to contribute to the growth and success of the company.
-                    <br>
-                With a degree in science physics, a specialization in renewable energy, and experience in web development, I am seeking a career that combines my technical skills and passion for sustainable energy solutions. I am confident that my expertise in both fields will enable me to provide innovative and effective solutions for companies in the renewable energy industry. My objective is to work in a dynamic and fast-paced environment that encourages creativity and provides opportunities for professional growth. I am a team player with excellent communication skills and a strong work ethic, and I look forward to contributing to the success of any organization that values innovation, sustainability, and excellence.</p>
-                <a href="" class="btn btn-outline-danger"><i class="icon-down-circled2 "></i>Download My CV</a>
+{#                <h4 class="font-weight-light"> Career Objective </h4>#}
+{#                <p class="mt-20">To secure a challenging position in the renewable energy industry that utilizes my skills and knowledge in science physics and web development to contribute to the growth and success of the company.#}
+{#                    <br>#}
+{#                With a degree in science physics, a specialization in renewable energy, and experience in web development, I am seeking a career that combines my technical skills and passion for sustainable energy solutions. I am confident that my expertise in both fields will enable me to provide innovative and effective solutions for companies in the renewable energy industry. My objective is to work in a dynamic and fast-paced environment that encourages creativity and provides opportunities for professional growth. I am a team player with excellent communication skills and a strong work ethic, and I look forward to contributing to the success of any organization that values innovation, sustainability, and excellence.</p>#}
+                <a href="" class="btn btn-outline-danger" target="_blank"><i class="icon-down-circled2 "></i>Download My CV</a>
             </div>
             <div class="col-lg-4 about-card">
                 <h3 class="font-weight-light">Personal Info</h3>
@@ -36,30 +36,34 @@
             <div class="col-lg-4 about-card">
                 <h3 class="font-weight-light">My Expertise</h3>
                 <span class="line mb-5"></span>
+                {% for expertise in expertises %}
+                {% if expertise %}
                 <div class="row">
-                    <div class="col-1 text-danger pt-1"><i class="ti-panel icon-lg"></i></div>
+                    <div class="col-1 text-danger pt-1"><i class="{{ expertise.icon }} icon-lg"></i></div>
                     <div class="col-10 ml-auto mr-3">
-                        <h6>Renewable Energy</h6>
-                        <p class="subtitle"> Renewble energy expert and renewable energy technologies</p>
+                        <h6>{{ expertise.course_name}}</h6>
+                        <p class="subtitle"> Acquired from:  <span class="text-danger">{{ expertise.school }}</span></p>
                         <hr>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-1 text-danger pt-1"><i class="ti-server icon-lg"></i></div>
-                    <div class="col-10 ml-auto mr-3">
-                        <h6>Web Development</h6>
-                        <p class="subtitle">Front end web development using HTML, CSS and javascript.  and also Backend development using python django</p>
-                        <hr>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-1 text-danger pt-1"><i class="ti-stats-up icon-lg"></i></div>
-                    <div class="col-10 ml-auto mr-3">
-                        <h6>Energy Management</h6>
-                        <p class="subtitle">Energy Management technologies and practises</p>
-                        <hr>
-                    </div>
-                </div>
+                {% endif %}
+                {% endfor %}
+{#                <div class="row">#}
+{#                    <div class="col-1 text-danger pt-1"><i class="ti-server icon-lg"></i></div>#}
+{#                    <div class="col-10 ml-auto mr-3">#}
+{#                        <h6>Web Development</h6>#}
+{#                        <p class="subtitle">Front end web development using HTML, CSS and javascript.  and also Backend development using python django</p>#}
+{#                        <hr>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="row">#}
+{#                    <div class="col-1 text-danger pt-1"><i class="ti-stats-up icon-lg"></i></div>#}
+{#                    <div class="col-10 ml-auto mr-3">#}
+{#                        <h6>Energy Management</h6>#}
+{#                        <p class="subtitle">Energy Management technologies and practises</p>#}
+{#                        <hr>#}
+{#                    </div>#}
+{#                </div>#}
             </div>
         </div>
     </div>
@@ -121,16 +125,22 @@
         <div class="container">
             <h2 class="mb-5 pb-4"><span class="text-danger">My</span> Services</h2>
             <div class="row">
-                <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5">
-                       <div class="card-header has-icon">
-                            <i class="ti-vector text-danger" aria-hidden="true"></i>
+                <div class="d-flex justify-content-center align-content-center">
+                    {% for service in services %}
+                         {% if service %}
+                             <div class="col w-100">
+                        <div class="card mb-5">
+                       <div class="card-header has-icon ">
+                            <i class="{{ service.icon }} text-danger" aria-hidden="true"></i>
                         </div>
-                        <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">Ullam</h5>
-                            <P class="subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam commodi provident, dolores reiciendis enim pariatur error optio, tempora ex, nihil nesciunt! In praesentium sunt commodi, unde ipsam ex veritatis laboriosam dolor asperiores suscipit blanditiis, dignissimos quos nesciunt nulla aperiam officia.</P>
+                        <div class="card-body w-100">
+                            <h5 class="mb-3 card-title text-dark">{{ service.service_name }}</h5>
+                            <P class="subtitle">{{ service.description }}</P>
                         </div>
                     </div>
+                             </div>
+                        {% endif %}
+                {% endfor %}
                 </div>
                 </div>
         </div>

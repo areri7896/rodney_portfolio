@@ -1,10 +1,13 @@
 from django.core.mail import send_mail
 from django.shortcuts import render
+from cv.models import Service, Expertise
 
 
 # Create your views here.
 def index(request):
-    return render(request, 'cv/index.html', {})
+    services = Service.objects.all()
+    expertises = Expertise.objects.all()
+    return render(request, 'cv/index.html', {'services': services, 'expertises': expertises})
 
 
 def contact(request):

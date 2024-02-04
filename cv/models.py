@@ -4,14 +4,14 @@ from django.db import models
 
 # Create your models here.
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     # username = models.CharField(max_length=100)
     # first_name = models.CharField(max_length=100)
     # last_name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
     date_of_birth = models.DateField
     alt_emails = models.TextField(blank=True)
-    bio = models.TextField
+    bio = models.TextField(blank=True)
     phone_number = models.CharField(blank=True, max_length=10)
     alt_phone_number = models.CharField(blank=True, max_length=100)
     git_hub_link = models.URLField(blank=True)
@@ -33,7 +33,8 @@ class Expertise(models.Model):
         verbose_name = 'Expertise'
 
     course_name = models.CharField(blank=True, max_length=50)
-    description = models.TextField
+    description = models.TextField(blank=True)
+    icon = models.CharField(max_length=50, blank=True)
     school = models.CharField( max_length=50)
     period_from = models.CharField( max_length=50)
     period_to = models.CharField( max_length=50)
@@ -46,7 +47,7 @@ class Expertise(models.Model):
 class Project(models.Model):
     portfolio_image = models.ImageField(upload_to="portfolio_image", blank=True, null=True)
     project_name = models.CharField(max_length=100)
-    description = models.TextField
+    description = models.TextField(blank=True, null=True)
     period_done = models.CharField(max_length=20)
 
     def __str__(self):
@@ -60,7 +61,7 @@ class Education(models.Model):
 
     start = models.DateTimeField()
     end = models.DateTimeField()
-    description = models.TextField
+    description = models.TextField(blank=True)
     school = models.CharField(max_length=100)
     course = models.CharField(max_length=100)
     is_key_education = models.BooleanField(default=False)
@@ -76,7 +77,16 @@ class Skill(models.Model):
 class Webinar(models.Model):
     w_name = models.CharField(max_length=100)
     date_conducted = models.CharField(max_length=50)
-    description = models.TextField
+    description = models.TextField(blank=True)
 
     def __str__(self):
         return self.w_name
+
+
+class Service(models.Model):
+    icon = models.CharField(max_length=50)
+    service_name = models.CharField(max_length=50)
+    description = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.service_name

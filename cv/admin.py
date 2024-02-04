@@ -1,9 +1,10 @@
 from django.contrib import admin
 
-from cv.models import Profile, Expertise, Project, Webinar, Education
+from cv.models import Profile, Expertise, Project, Webinar, Education, Service
 
 # Register your models here.
 admin.site.register(Profile)
+admin.site.register(Service)
 
 
 @admin.register(Webinar)
