@@ -32,6 +32,7 @@ SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -155,15 +156,28 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [BASE_DIR / "static",
-                    ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / '/media/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+if DEBUG:
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, '/staticfiles/')
+MEDIA_ROOT = os.path.join(BASE_DIR, '/media/')
+
+# STATIC_URL = 'static/'
+#
+# STATICFILES_DIRS = [BASE_DIR / "static",
+#                     ]
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = BASE_DIR / '/media/'
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
 # STATIC_ROOT = 'D:/web_codin/django/personalportfolio/staticfiles'
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 
 
 # Default primary key field type
